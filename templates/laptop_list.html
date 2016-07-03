@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h2>Laptop list</h2>
+{% endblock %}
+
+{% block bootstrap3_body %}
+
+{% if laptop_list %}
+<div class="row">
+    {% for wine in laptop_list %}
+    <div class="col-xs-6 col-lg-4">
+        <h4><a href="{% url 'reviews:laptop_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h4>
+        <h5>{{ wine.review_set.count }} reviews</h5>
+
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No Laptop are available.</p>
+{% endif %}
+{% endblock %}

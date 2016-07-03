@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+<h2>
+    <a href="{% url 'reviews:review_detail' queryset.laptop.id %}">{{ queryset.laptop.name }}</a>
+</h2>
+{% endblock %}
+
+{% block bootstrap3_body %}
+<div>
+
+<h4>Rated {{ queryset.rating }}  {{ queryset.user_name }}</h4>
+<p>{{ queryset.pub_date }}</p>
+<p>{{ queryset.comment }}</p>
+
+
+        <h4> Add Review:</h4>
+
+        <div class="container">
+            <button type="submit" class="btn btn-default">
+                <a href="{% url 'reviews:add_review' queryset.laptop_id %}">Click Here </a>
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

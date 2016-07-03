@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+<h2>Laptop Name: {{ queryset.name }}</h2>
+<h4>Total Comments: {{ queryset.review_set.count }} </h4>
+{% endblock %}
+
+{% block bootstrap3_body %}
+<h3>Recent reviews</h3>
+
+{% if queryset.review_set.all %}
+<div class="row">
+    {% for review in queryset.review_set.all %}
+    <div class="col-xs-6 col-lg-4">
+        <em>{{ review.comment }}</em>
+
+
+
+        <h5><a href="{% url 'reviews:review_detail' review.id %}">
+        Read more
+        </a></h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No reviews for this wine yet</p>
+{% endif %}
+
+<h3>Add your review</h3>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+     <div class="container">
+            <button type="submit" class="btn btn-default">
+                <a href="{% url 'reviews:add_review' queryset.id %}">Click Here </a>
+            </button>
+
+
+        </div>
+
+{% endblock %}
